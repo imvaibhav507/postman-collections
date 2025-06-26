@@ -1,0 +1,92 @@
+
+NetSuite SYS API
+
+□ customer
+└ Upsert Records customer
+  √  Header includes all the required properties: client_id, client_secret, record_log_on_success_enable_flag
+  √  Object type is Customer
+  √  All records have recordType, batchRunStatus, recordId, customerId, parentCompany properties
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/customer [200 OK, 540B, 3.6s]
+  √  Status code is 200
+  √  Upsert status is successful
+  √  All Customer records are upserted successfully
+
+□ store-location
+└ Upsert Records store-location
+  √  Header includes all the required properties: client_id, client_secret, record_log_on_success_enable_flag
+  √  Object type is Store Location
+  √  All records have recordId, storeId, storeName, storeFranchiseCustomer and storeMasterFranchisee properties
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/store-location [200 OK, 547B, 1423ms]
+  √  Status code is 200
+  √  Upsert status is successful
+  √  All Store Location records are upserted successfully
+
+□ billing-item
+└ Upsert Records billing-item
+  √  Header includes all the required properties: client_id, client_secret, record_log_on_success_enable_flag
+  √  Object type is Billing Item
+  √  All records have storeId and masterFranchisee properties
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/billing-item [200 OK, 546B, 1493ms]
+  √  Status code is 200
+  √  Upsert status is successful
+  √  All Billing Item records are upserted successfully
+
+□ franchise-agreement
+└ Upsert Records franchise-agreement
+  √  Header includes all the required properties: client_id, client_secret, record_log_on_success_enable_flag
+  √  Object type is Franchise Agreement
+  √  All records have recordId, storeId, agreementId and masterFranchisee properties
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-agreement [200 OK, 541B, 919ms]
+  √  Status code is 200
+  √  Upsert status is successful
+  √  All Franchise Agreement records are upserted successfully
+
+□ sales-activity
+└ Upsert Records franchise-sales-activity
+  √  Header includes all the required properties: client_id, client_secret, record_log_on_success_enable_flag, batch_id, batch_run_record_id
+  √  Object type is SalesActivity
+  √  All records have recordId, storeId and invoiceNumber properties
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/sales-activity [200 OK, 546B, 886ms]
+  √  Status code is 200
+  √  Upsert status is successful
+  √  All Franchise Sales Activity records are upserted successfully
+
+→ NetSuite Object Out of Scope
+  √  Object type 'SalesOrder' is invalid
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/SalesOrder [400 Bad Request, 518B, 559ms]
+  √  Status code is 400
+
+→ Client Credentials Not Passed
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/customer [401 Unauthorized, 357B, 396ms]
+  √  Status code is 401
+  √  Response body contains error message: Authentication denied.
+
+→ Mandatory Headers Not Passed
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/customer [400 Bad Request, 489B, 382ms]
+  √  Status code is 400
+  √  Response body contains error message: undefined
+
+→ Error Max Records
+  POST https://dev-sys-netsuite-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/customer [500 Server Error, 1.21kB, 3.1s]
+  √  Status code is 500
+  √  Response body contains error message: 'MAX_RCRDS_EXCEEDED: The maximum number ( 100 ) of records allowed for a UPSERTLIST operation has been exceeded.'
+
+┌─────────────────────────┬─────────────────────┬─────────────────────┐
+│                         │            executed │              failed │
+├─────────────────────────┼─────────────────────┼─────────────────────┤
+│              iterations │                   1 │                   0 │
+├─────────────────────────┼─────────────────────┼─────────────────────┤
+│                requests │                   9 │                   0 │
+├─────────────────────────┼─────────────────────┼─────────────────────┤
+│            test-scripts │                   9 │                   0 │
+├─────────────────────────┼─────────────────────┼─────────────────────┤
+│      prerequest-scripts │                   6 │                   0 │
+├─────────────────────────┼─────────────────────┼─────────────────────┤
+│              assertions │                  38 │                   0 │
+├─────────────────────────┴─────────────────────┴─────────────────────┤
+│ total run duration: 13.7s                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│ total data received: 2.8kB (approx)                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│ average response time: 1432ms [min: 382ms, max: 3.6s, s.d.: 1129ms] │
+└─────────────────────────────────────────────────────────────────────┘

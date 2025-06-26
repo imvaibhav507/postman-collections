@@ -1,0 +1,149 @@
+
+FCRM SYS API
+
+□ Master Customer
+└ Query Master Customer Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/master-customer [200 OK, 110.09kB, 3.1s]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'MasterCustomer'
+  √  Batch run status is 'CREATED'
+  √  Each Customer record contains all required properties: 'recordId', 'customerId', 'isIndividual', 'companyName', 'parentCompany', 'category', 'primarySubsidiary', 'accountType'
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/master-customer [200 OK, 321B, 513ms]
+
+□ Franchise Customer
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-customer [200 OK, 468B, 587ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'FranchiseCustomer'
+  √  Batch run status is 'CREATED'
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-customer [200 OK, 321B, 461ms]
+
+□ Primary Store Location
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/primary-store-location [200 OK, 5.4kB, 485ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'PrimaryStoreLocation'
+  √  Batch run status is 'CREATED'
+  √  Each PrimaryStoreLocation record contains all required properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/primary-store-location [200 OK, 321B, 613ms]
+
+□ Store Location
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/store-location [200 OK, 6.67kB, 504ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'StoreLocation'
+  √  Batch run status is 'CREATED'
+  √  Each StoreLocation record contains all required properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/store-location [200 OK, 321B, 733ms]
+
+□ Franchise Agreement
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-agreement [200 OK, 4.99kB, 537ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'FranchiseAgreement'
+  √  Batch run status is 'CREATED'
+  √  Each FranchiseAgreement record contains all required properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-agreement [200 OK, 321B, 445ms]
+
+□ Billing Item
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/billing-item [200 OK, 462B, 548ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'BillingItem'
+  √  Batch run status is 'CREATED'
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/billing-item [200 OK, 321B, 534ms]
+
+□ Sales Activity
+└ Query FCRM Staging Records
+  √  Header includes all the required properties: source, client_id, client_secret
+  GET https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/sales-activity [200 OK, 464B, 595ms]
+  √  Status code is 200
+  √  Response body contains all required properties
+  √  Response header has all required properties: 'batchRunRecordId', 'batchId', 'recordType', 'batchRunStatus'
+  √  Record type is 'SalesActivity'
+  √  Batch run status is 'CREATED'
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-sales-activity [400 Bad Request, 556B, 550ms]
+
+→ Create Transaction Sync Status
+  POST https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/master-customer [200 OK, 279B, 469ms]
+  √  Status code is 200
+
+→ Update Batch Run Status Master Customer
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/master-customer [200 OK, 321B, 531ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status Franchise Customer
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-customer [200 OK, 321B, 492ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status Primary Store Location
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/primary-store-location [200 OK, 321B, 474ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status  Store Location
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/store-location [200 OK, 321B, 1008ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status  Franchise Agreement
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/franchise-agreement [200 OK, 321B, 528ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status Billing Item
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/billing-item [200 OK, 321B, 928ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+→ Update Batch Run Status Sales Activity
+  √  Request body to have batchRunRecordId, batchId, recordType, batchRunStatus and batchRunUpdateDateTime properties
+  PATCH https://dev-sys-fcrm-app-k6owae.6euqcy.usa-e1.cloudhub.io/api/v1/franchise/sales-activity [200 OK, 321B, 926ms]
+  √  Status code is 200
+  √  Response body contains expected properties: generatedKeys, affectedRows
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                 22 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                 30 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                 30 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                 68 │                  0 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 17.2s                                         │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 127.65kB (approx)                            │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 710ms [min: 445ms, max: 3.1s, s.d.: 559ms] │
+└───────────────────────────────────────────────────────────────────┘
